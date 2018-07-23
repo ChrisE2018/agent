@@ -1,7 +1,7 @@
 
 package com.chriseliot.agent;
 
-public class Demo
+public class SimplestDemo
 {
     public static void main (final String[] args)
     {

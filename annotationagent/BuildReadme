@@ -1,0 +1,4 @@
+
+copy files manifest and the bin folder to a temporary place.
+cd into temporary place.
+jar -vcmf manifest.text ../AA.jar com/chriseliot/agent/AnnotationAgent.class

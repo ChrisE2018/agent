@@ -5,6 +5,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
+//From https://dzone.com/articles/get-all-classes-within-package
 public class PackageScan
 {
     /**

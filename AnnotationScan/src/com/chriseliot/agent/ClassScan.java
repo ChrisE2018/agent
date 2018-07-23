@@ -4,6 +4,7 @@ package com.chriseliot.agent;
 import java.net.*;
 import java.util.*;
 
+//From https://softbork.com/blog/index.php?id=8
 public class ClassScan
 {
     public List<URL> getClasses ()

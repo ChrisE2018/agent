@@ -5,6 +5,6 @@ public class Demo
 {
     public static void main (final String[] args)
     {
-	System.out.println ("Agent Demo main method");
+	System.out.println ("SimplestAgent Demo main method");
     }
 }

@@ -3,7 +3,7 @@ package com.chriseliot.agent;
 
 import java.lang.instrument.Instrumentation;
 
-public class AnnotationAgent
+public class SimplestAgent
 {
     /**
      * Agent premain method.
@@ -13,6 +13,6 @@ public class AnnotationAgent
      */
     public static void premain (final String args, final Instrumentation instrumentation)
     {
-	System.out.println ("AnnotationAgent premain");
+	System.out.println ("SimplestAgent premain");
     }
 }

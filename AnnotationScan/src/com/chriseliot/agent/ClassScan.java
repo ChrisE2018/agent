@@ -10,13 +10,15 @@ public class ClassScan
     public List<URL> getClasses ()
     {
 	final List<URL> result = new ArrayList<> ();
-	final ClassLoader contextClassLoader = Thread.currentThread ().getContextClassLoader ();
-	final ClassLoader[] classloaders = {getClass ().getClassLoader (), contextClassLoader};
-	for (int i = 0; i < classloaders.length; i++)
+	final Set<ClassLoader> classLoaders = new LinkedHashSet<> ();
+	classLoaders.add (getClass ().getClassLoader ());
+	classLoaders.add (Thread.currentThread ().getContextClassLoader ());
+	for (final ClassLoader cl : classLoaders)
 	{
-	    if (classloaders[i] instanceof URLClassLoader)
+	    if (cl instanceof URLClassLoader)
 	    {
-		final URLClassLoader urlClassLoader = (URLClassLoader)classloaders[i];
+		@SuppressWarnings ("resource")
+		final URLClassLoader urlClassLoader = (URLClassLoader)cl;
 		result.addAll (Arrays.asList (urlClassLoader.getURLs ()));
 	    }
 	    else

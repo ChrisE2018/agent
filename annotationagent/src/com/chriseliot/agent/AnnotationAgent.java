@@ -60,6 +60,11 @@ public class AnnotationAgent
 
     public static void report (final Class<?> cls)
     {
+	if (instrumentation == null)
+	{
+	    System.out.println ("Agent not initialized - premain did not run");
+	    return;
+	}
 	final ClassLoader loader = cls.getClassLoader ();
 	for (final Class<?> c : instrumentation.getInitiatedClasses (loader))
 	{
@@ -79,6 +84,11 @@ public class AnnotationAgent
 
     public static void reportAnnotations ()
     {
+	if (instrumentation == null)
+	{
+	    System.out.println ("Agent not initialized - premain did not run");
+	    return;
+	}
 	for (final Class<?> cls : instrumentation.getAllLoadedClasses ())
 	{
 	    final Annotation[] annotations = cls.getAnnotations ();
@@ -94,17 +104,5 @@ public class AnnotationAgent
 		}
 	    }
 	}
-    }
-
-    @Override
-    public String toString ()
-    {
-	final StringBuilder buffer = new StringBuilder ();
-	buffer.append ("#<");
-	buffer.append (getClass ().getSimpleName ());
-	buffer.append (" ");
-	buffer.append (System.identityHashCode (this));
-	buffer.append (">");
-	return buffer.toString ();
     }
 }

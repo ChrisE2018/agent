@@ -8,6 +8,8 @@ import java.util.*;
 //From https://dzone.com/articles/get-all-classes-within-package
 public class PackageScan
 {
+    private static final String DOT_CLASS = ".class";
+
     /**
      * Scans all classes accessible from the context class loader which belong to the given package
      * and subpackages.
@@ -48,21 +50,22 @@ public class PackageScan
     private List<Class<?>> findClasses (final File directory, final String packageName) throws ClassNotFoundException
     {
 	final List<Class<?>> result = new ArrayList<> ();
-	if (!directory.exists ())
+	if (directory.exists ())
 	{
-	    return result;
-	}
-	final File[] files = directory.listFiles ();
-	for (final File file : files)
-	{
-	    if (file.isDirectory ())
+	    final File[] files = directory.listFiles ();
+	    for (final File file : files)
 	    {
-		assert !file.getName ().contains (".");
-		result.addAll (findClasses (file, packageName + "." + file.getName ()));
-	    }
-	    else if (file.getName ().endsWith (".class"))
-	    {
-		result.add (Class.forName (packageName + '.' + file.getName ().substring (0, file.getName ().length () - 6)));
+		final String filename = file.getName ();
+		if (file.isDirectory ())
+		{
+		    result.addAll (findClasses (file, packageName + "." + filename));
+		}
+		else if (filename.endsWith (DOT_CLASS))
+		{
+		    final String basename = filename.substring (0, filename.length () - DOT_CLASS.length ());
+		    final String classname = packageName + '.' + basename;
+		    result.add (Class.forName (classname));
+		}
 	    }
 	}
 	return result;

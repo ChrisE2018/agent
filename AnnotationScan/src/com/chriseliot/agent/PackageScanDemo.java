@@ -13,7 +13,6 @@ public class PackageScanDemo
 	final List<Class<?>> classes = packageScan.getClasses ("com.chriseliot");
 	for (final Class<?> cls : classes)
 	{
-
 	    final Annotation[] annotations = cls.getAnnotations ();
 	    if (annotations.length > 0)
 	    {

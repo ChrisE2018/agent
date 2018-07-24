@@ -40,7 +40,8 @@ public class PackageScan
     }
 
     /**
-     * Recursive method used to find all classes in a given directory and subdirs.
+     * Recursive method used to find all classes in a given directory and subdirs. This will force
+     * loading of all classes found, even if they are not required.
      *
      * @param directory The base directory
      * @param packageName The package name for classes found inside the base directory

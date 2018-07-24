@@ -7,6 +7,10 @@ import java.util.*;
 //From https://softbork.com/blog/index.php?id=8
 public class ClassScan
 {
+    /**
+     * Find base URLS of all class locations. This will find all jar files and directories on the
+     * class path. These could be opened up and searched recursively to find class files.
+     */
     public List<URL> getClasses ()
     {
 	final List<URL> result = new ArrayList<> ();

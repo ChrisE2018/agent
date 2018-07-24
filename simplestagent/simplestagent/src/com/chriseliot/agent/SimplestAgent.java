@@ -3,6 +3,7 @@ package com.chriseliot.agent;
 
 import java.lang.instrument.Instrumentation;
 
+/** "Hello, world" equivalent for Java agent implementation. */
 public class SimplestAgent
 {
     /**
